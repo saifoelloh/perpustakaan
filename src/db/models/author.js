@@ -1,5 +1,6 @@
-'use strict';
-const { Model } = require('sequelize');
+
+const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Author extends Model {
     /**
@@ -11,11 +12,18 @@ module.exports = (sequelize, DataTypes) => {
       this.books = this.hasMany(models.Book, {
         foreignKey: 'authorId',
         as: 'books',
-      });
+      })
     }
   }
   Author.init(
     {
+      id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       name: DataTypes.STRING,
       biograph: DataTypes.STRING,
       photo: DataTypes.STRING,
@@ -24,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Author',
       tableName: 'authors',
-    }
-  );
-  return Author;
-};
+    },
+  )
+  return Author
+}
