@@ -7,13 +7,14 @@ const {
   updateBookRentById,
   deleteBookRentById
 } = require("../controller/bookrent");
+const checkAuthMw = require("../middleware/auth");
 
 const BookRentRouter = new Router();
 
-BookRentRouter.get("/", getAllBookRent)
-  .post("/", storeBookRent)
-  .get("/:id", getBookRentById)
-  .put("/:id", updateBookRentById)
-  .delete("/:id", deleteBookRentById);
+BookRentRouter.get("/", checkAuthMw, getAllBookRent)
+  .post("/", checkAuthMw, storeBookRent)
+  .get("/:id", checkAuthMw, getBookRentById)
+  .put("/:id", checkAuthMw, updateBookRentById)
+  .delete("/:id", checkAuthMw, deleteBookRentById);
 
 module.exports = BookRentRouter;
