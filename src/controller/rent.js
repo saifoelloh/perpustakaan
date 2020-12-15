@@ -36,7 +36,14 @@ exports.updateRentById = async (req, res) => {
 exports.deleteRentById = async (req, res) => {
   const rent = await Rent.destroy({
     where: { id: req.params.id },
+<<<<<<< HEAD
   })
 
   return res.statusCode(200)
 }
+=======
+  });
+
+  return res.statusCode(200);
+};
+>>>>>>> 2e3694067487c505a99d28b5275ab58c7c1a0f9c

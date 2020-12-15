@@ -1,4 +1,4 @@
-const { Router } = require('express')
+const { Router } = require('express');
 
 const {
   getAllBook,
@@ -6,14 +6,14 @@ const {
   getBookById,
   updateBookById,
   deleteBookById,
-} = require('../controller/book')
+} = require('../controller/book');
 
-const BookRouter = new Router()
+const BookRouter = new Router();
 
 BookRouter.get('/', getAllBook)
   .post('/', storeBook)
   .get('/:id', getBookById)
   .put('/:id', updateBookById)
-  .delete('/:id', deleteBookById)
+  .delete('/:id', deleteBookById);
 
-module.exports = BookRouter
+module.exports = BookRouter;
