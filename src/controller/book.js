@@ -18,7 +18,7 @@ exports.getAllBook = async (req, res) => {
 
 exports.storeBook = async (req, res) => {
   const book = await Book.create({ ...req.body });
-  return res.status(200).json(author);
+  return res.status(200).json(book);
 };
 
 exports.getBookById = async (req, res) => {
