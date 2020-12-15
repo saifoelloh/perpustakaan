@@ -35,7 +35,7 @@ exports.updateBookById = async (req, res) => {
   return res.status(200).json(result);
 };
 
-exports.deleteAuthorById = async (req, res) => {
+exports.deleteBookById = async (req, res) => {
   const book = await Book.destroy({
     where: { id: req.params.id }
   });
