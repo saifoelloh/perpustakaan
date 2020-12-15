@@ -62,17 +62,17 @@ exports.userLogin = async (req, res) => {
     return res.statusCode(401)
   }
 
-  const token = jwt.sign(user, APP_KEY, { expiresIn: '6h' })
+  const token = jwt.sign(user.dataValues, APP_KEY, { expiresIn: '6h' })
   res.cookie('token', token, {
     httpOnly: true,
     maxAge: 1000 * 60 ** 2 * 24,
     sameSite: true,
   })
 
-  return res.statusCode(204)
+  return res.status(204).end()
 }
 
-exports.uesrLogout = async (req, res) => {
+exports.userLogout = async (req, res) => {
   res.clearCookie('token')
-  return res.statusCode(204)
+  return res.status(204).end()
 }
