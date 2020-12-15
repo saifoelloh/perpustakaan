@@ -7,7 +7,7 @@ exports.getAllBook = async (req, res) => {
     sortBy = "createdAt",
     orderBy = "ASC"
   } = req.query;
-  const book = await book.findAndCountAll({
+  const book = await Book.findAndCountAll({
     order: [[sortBy, orderBy]],
     offset: page * show,
     limit: show
