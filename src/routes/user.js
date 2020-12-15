@@ -1,4 +1,4 @@
-const { Router } = require('express')
+const { Router } = require("express");
 const {
   getAllUser,
   storeUser,
@@ -6,17 +6,18 @@ const {
   updateUserById,
   deleteUserById,
   userLogin,
-  userLogout,
-} = require('../controller/user')
+  userLogout
+} = require("../controller/user");
+const checkAuthMw = require("../middleware/auth");
 
-const UserRouter = new Router()
+const UserRouter = new Router();
 
-UserRouter.get('/', getAllUser)
-  .post('/', storeUser)
-  .get('/:id', getUserById)
-  .put('/:id', updateUserById)
-  .delete('/:id', deleteUserById)
-  .post('/login', userLogin)
-  .post('/logout', userLogout)
+UserRouter.get("/", checkAuthMw, getAllUser)
+  .post("/", checkAuthMw, storeUser)
+  .get("/:id", checkAuthMw, getUserById)
+  .put("/:id", checkAuthMw, updateUserById)
+  .delete("/:id", checkAuthMw, deleteUserById)
+  .post("/login", userLogin)
+  .post("/logout", checkAuthMw, userLogout);
 
-module.exports = UserRouter
+module.exports = UserRouter;
