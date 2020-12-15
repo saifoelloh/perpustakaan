@@ -13,6 +13,7 @@ const BookRouter = new Router();
 BookRouter.get("/", getAllBook)
   .post("/", storeBook)
   .get("/:id", getBookById)
+  .put("/:id", updateBookById)
   .delete("/:id", deleteBookById);
 
 module.exports = BookRouter;
