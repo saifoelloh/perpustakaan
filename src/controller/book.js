@@ -6,6 +6,7 @@ exports.getAllBook = async (req, res) => {
   } = req.query
   const book = await Book.findAndCountAll({
     order: [[sortBy, orderBy]],
+    include: ['author', 'rents'],
     offset: page * show,
     limit: show,
   })
