@@ -1,10 +1,17 @@
-const { Router } = require('express');
-const MainRouter = new Router();
+const { Router } = require('express')
 
-const UserRouter = require('./user');
-const AuthorRouter = require('./author');
+const MainRouter = new Router()
 
-MainRouter.use('/user', UserRouter);
-MainRouter.use('/author', AuthorRouter);
+const UserRouter = require('./user')
+const AuthorRouter = require('./author')
+const RentRouter = require('./rent')
+const BookRouter = require('./book')
+const BookRentRouter = require('./bookrent')
 
-module.exports = MainRouter;
+MainRouter.use('/user', UserRouter)
+MainRouter.use('/author', AuthorRouter)
+MainRouter.use('/rent', RentRouter)
+MainRouter.use('/book', BookRouter)
+MainRouter.use('/book-rent', BookRentRouter)
+
+module.exports = MainRouter

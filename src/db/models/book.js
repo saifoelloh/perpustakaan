@@ -1,5 +1,5 @@
-'use strict';
-const { Model } = require('sequelize');
+const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
     /**
@@ -13,11 +13,25 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         as: 'author',
-      });
+      })
+      this.rents = this.belongsToMany(models.Rent, {
+        through: 'book_rents',
+        foreignKey: 'rentId',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        as: 'rents',
+      })
     }
   }
   Book.init(
     {
+      id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       title: DataTypes.STRING,
       authorId: DataTypes.UUID,
       description: DataTypes.TEXT,
@@ -28,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Book',
       tableName: 'books',
-    }
-  );
-  return Book;
-};
+    },
+  )
+  return Book
+}
