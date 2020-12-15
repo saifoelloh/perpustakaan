@@ -26,7 +26,7 @@ exports.getBookRentById = async (req, res) => {
   return res.status(200).json(bookRent);
 };
 
-exports.updateBookRenById = async (req, res) => {
+exports.updateBookRentById = async (req, res) => {
   const bookRent = await BookRent.findByPk(req.params.id);
   const result = await bookRent.update({
     ...req.body
