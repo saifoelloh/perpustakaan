@@ -35,6 +35,11 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.UUID,
       start: DataTypes.DATE,
       end: DataTypes.DATE,
+      status: {
+        type: DataTypes.ENUM,
+        values: ['active', 'archive', 'lose'],
+        defaultValue: 'active',
+      },
     },
     {
       sequelize,
