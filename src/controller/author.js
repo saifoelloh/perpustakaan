@@ -33,14 +33,14 @@ exports.getAuthorById = async (req, res) => {
 exports.updateAuthorById = async (req, res) => {
   const author = await Author.findByPk(req.params.id)
   let photo = author.photo
+  photo = req.fileName
   if (req?.fileName !== undefined) {
-    const filePath = path.join('/app', photo)
-    fs.unlinkSync(filePath)
-    photo = req.fileName
+    if (photo !== '') {
+      const filePath = path.join('/app', photo)
+      fs.unlinkSync(filePath)
+    }
   }
-  const result = await author.update({
-    ...req.body,
-  })
+  const result = await author.update({ ...req.body, photo })
 
   return res.status(200).json(result)
 }

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('rents', {
@@ -25,6 +25,11 @@ module.exports = {
       end: {
         type: Sequelize.DATE,
       },
+      status: {
+        type: Sequelize.ENUM,
+        values: ['active', 'archive', 'lose'],
+        defaultValue: 'active',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -33,9 +38,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Rents');
+    await queryInterface.dropTable('rents')
   },
-};
+}
