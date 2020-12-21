@@ -1,6 +1,7 @@
-require('dotenv').config();
+require('dotenv').config()
 
-const { DB_DATABASE, DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_DATABASE, DB_USER, DB_PASSWORD, DB_HOST } = process.env
+console.log(DB_DATABASE, DB_USER, DB_PASSWORD, DB_HOST)
 
 module.exports = {
   development: {
@@ -10,4 +11,4 @@ module.exports = {
     host: DB_HOST,
     dialect: 'postgres',
   },
-};
+}

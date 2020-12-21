@@ -4,31 +4,13 @@ services:
     build:
       context: .
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${APP_PORT}:3000
     volumes:
       - /app/node_modules
       - .:/app
-    depends_on:
-      - adminer
     command: yarn dev
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    depends_on:
-      - postgres
-    links:
-      - postgres
-    environment:
-      ADMINER_DESIGN: 'pepa-linha'
-      ADMINER_DEFAULT_SERVER: 'postgres'
-  postgres:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USER}
-    ports:
-      - ${DB_PORT}:5432
+
+networks:
+  default:
+    external:
+      name: local
